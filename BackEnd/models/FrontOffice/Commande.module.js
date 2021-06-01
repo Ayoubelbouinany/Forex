@@ -2,9 +2,8 @@ const { Double } = require('bson');
 var mongoose = require('mongoose');
 
 var commandeSchema = mongoose.Schema({
-  idUser: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'users'
+  User: {
+    type: String
   },
   date: {
     type: Date,
@@ -15,19 +14,6 @@ var commandeSchema = mongoose.Schema({
   },
   totalQuantity: {
     type: Number
-  },
-  adresse: {
-    type: String
-  },
-  ville: {
-    type: String
-  },
-  codePostal: {
-    type: String
-  },
-  idDevices: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Devises'
   }
 });
 

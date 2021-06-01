@@ -1,6 +1,7 @@
 
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
+const { number } = require('joi');
 
 var userSchema = mongoose.Schema({
     email: {
@@ -13,13 +14,13 @@ var userSchema = mongoose.Schema({
      fullName: {
         type: String
     },
-    status: {
-        type: String,
-        default: 'user'
-    },
     date_creation:{
         type:Date,
         default:Date.now
+    },
+    sold:{
+        type:Number,
+        default:100
     }
 });
 
@@ -39,6 +40,10 @@ module.exports.getUserByEmail = function (email, callback) {
     User.findOne(query, callback);
 }
 
+module.exports.getUserByFullName = function (name, callback) {
+    var query = { fullName: name  };
+    User.findOne(query, callback);
+}
 module.exports.getUserByStatus = function (status, callback) {
     var query = { status: status };
     User.findOne(query, callback);
@@ -56,4 +61,12 @@ module.exports.comparePassword = function (givenPassword, hash, callback) {
 
 module.exports.getAllUsers = function (callback) {
     User.find(callback)
+}
+
+
+module.exports.updateSoldUser = function (fullName,newSold,callback) {
+    let query= { fullName: fullName }
+    User.findOneAndUpdate(query,{$set:{
+        sold:newSold
+    }},callback)
 }

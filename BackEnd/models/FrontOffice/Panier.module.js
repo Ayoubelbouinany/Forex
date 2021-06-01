@@ -17,8 +17,8 @@ var panierSchema = mongoose.Schema({
 
 var Panier = module.exports = mongoose.model('Panier', panierSchema);
 //get all product from panier
-module.exports.getPanierByUserId = function (uid, callback) {
-  let query = {user: uid}
+module.exports.getPanierByUserId = function (user, callback) {
+  let query = { user: user }
    Panier.find(query, callback)
 }
 

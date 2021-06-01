@@ -5,7 +5,8 @@ import ItemsProfile from './ItemsProfile';
 
 import { items } from './../../../../mocks';
 
-export default function Profile({user}) {
+export default function Profile({navigation , route}) {
+  let {user}= route.params;
   return(
     <ScrollView>
       <Image source={require('./../../../../assets/Profile/ground.png')} style={{height: 140,     width: '100%',}} />

@@ -20,13 +20,17 @@ var productSchema = mongoose.Schema({
   },
   vendeur:{
     type:String,
+  },
+  cur:{
+    type:String
   }
 });
 
 var Product = module.exports = mongoose.model('Product', productSchema);
 
-module.exports.getAllProducts = function (v,callback) {
-  Product.find({'vendeur': {$ne:v}},callback)
+module.exports.getAllProducts = function (vendeur,callback) {
+  var query= { vendeur: { $ne :vendeur },quantity: { $gt: 0} }
+  Product.find(query,callback)
 }
 
 
@@ -57,7 +61,7 @@ module.exports.removeAllProduct = function(callback) {
   Product.remove({},callback);
 }
 
-module.exports.findAndUpdate = function(name,qty,callback) {
-  Product.updateOne({title: name},{$inc:{quantity:-qty}},callback);
+module.exports.findAndUpdate = function(idDevise,qty,callback) {
+  Product.updateOne({_id: idDevise},{$inc:{quantity:-qty}},callback);
 }
 

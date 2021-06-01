@@ -6,7 +6,8 @@ const admin = require('../midelleware/admin')
 
 route.get("/commandes",admin,Commande.getAllCommande);
 
-route.get("/commandes/:userId",auth,Commande.getCommandeByUserId);
-
-route.get("/commande/:commandeId",auth,Commande.getCommandeById);
+route.get("/commandes/:userId",Commande.getCommandeByUserId);
+route.post("/addCommande",Commande.AddCommande);
+route.post("/UpdateDevises",Commande.UpdateQuantityDevises);
+route.get("/commande/:commandeId",Commande.getCommandeById);
 module.exports=route;

@@ -5,7 +5,7 @@ class  Panier {
     this.items = oldPanier.items || {};
     this.totalQty = oldPanier.totalQty || 0;
     this.totalPrice = oldPanier.totalPrice || 0;
-    this.userId = oldPanier.userId || "";
+    this.user = oldPanier.user || "";
   }
 
   add(produit, idProduit) {
@@ -27,7 +27,7 @@ class  Panier {
       items: this.items,
       totalQty: this.totalQty,
       totalPrice: this.totalPrice,
-      userId: this.userId
+      user: this.user
     })
     return newPanier
   }

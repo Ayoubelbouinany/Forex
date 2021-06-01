@@ -6,14 +6,16 @@ import * as ImagePicker from 'expo-image-picker';
 import styles from './styles';
 import axios from 'axios';
 
-function AddProduit({user}) {
-    
+function AddProduit({navigation , route}) {
+    let {user}= route.params;
+    console.log('add' + JSON.stringify(user));
    // const [image, setImage] = useState(null)
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
     const [price, setPrice] = useState(0)
     const [quantity, setQuantity] = useState(1)
     const [vendeur, setVendeur] = useState('')
+    const [cur, setCur] = useState('')
 
 
 
@@ -32,7 +34,8 @@ function AddProduit({user}) {
 // } 
 
 useEffect(() => {
-    setVendeur(user.fullName)
+    let userName = user.fullName ? user.fullName : user.name;
+    setVendeur(userName)
 }, [])
 
 
@@ -42,7 +45,8 @@ useEffect(() => {
             description,
             price,
             quantity,
-            vendeur
+            vendeur,
+            cur
         }
 
        await  axios.post('http://10.0.2.2:3000/api/addProduct',data).then(res=>{
@@ -110,7 +114,15 @@ useEffect(() => {
               underlineColorAndroid="transparent"
               autoCapitalize="none"
           />
-          
+            <TextInput
+              style={styles.input}
+              placeholder='CUR {$ or  £ or MAD}'
+              placeholderTextColor="#aaaaaa"
+              onChangeText={(text) => setCur(text)}
+              value={cur} 
+              underlineColorAndroid="transparent"
+              autoCapitalize="none"
+          />
           <TouchableOpacity
               style={styles.button}
               onPress={() => AddProduct()}>

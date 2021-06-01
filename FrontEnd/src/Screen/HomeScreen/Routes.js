@@ -8,6 +8,7 @@ import Chart from "./Chart";
 import  Profile from "./Profile/index";
 import AddProduit from './AddProduit';
 import SettingsScreen from './Home';
+import Panier from './Panier';
 const Tab = createBottomTabNavigator();
 function Routes({user}) {
   return (
@@ -30,7 +31,9 @@ function Routes({user}) {
         else if(route.name === 'AddProduct'){
           iconName = 'add-circle-outline';
         }
-
+        else if(route.name === 'Panier'){
+          iconName = 'cart-outline';
+        }
         // You can return any component that you like here!
         return <Ionicons name={iconName} size={size} color={color} />;
       },
@@ -65,6 +68,9 @@ function Routes({user}) {
    
 
        <Tab.Screen name="AddProduct" component={AddProduit}  initialParams={{user: user}}>
+       </Tab.Screen>
+
+       <Tab.Screen name="Panier" component={Panier}  initialParams={{user: user}}>
        </Tab.Screen>
 
       </Tab.Navigator>

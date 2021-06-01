@@ -63,7 +63,8 @@ let AddToPanier =function (req, res, next) {
 
         // Get Cart By User ID
     let getCartByUserId= (req,res,next)=>{
-       let user = req.params.user
+       let {user} = req.params;
+       console.log(user)
      Panier.getPanierByUserId(user, function (err, cart) {
      if (err) return next(err)
  if (cart.length < 1) {

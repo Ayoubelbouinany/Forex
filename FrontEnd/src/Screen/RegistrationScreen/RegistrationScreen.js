@@ -3,6 +3,7 @@ import { Image, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import styles from './styles';
 import { firebase } from '../../firebase/config'
+import axios from "axios";
 
 export default function RegistrationScreen({navigation}) {
     const [fullName, setFullName] = useState('')
@@ -35,8 +36,15 @@ export default function RegistrationScreen({navigation}) {
                 usersRef
                     .doc(uid)
                     .set(data)
-                    .then(() => {
-                        navigation.navigate('Login', {user: data})
+                    .then(async () => {
+                        await axios.post(`http://10.0.2.2:3000/api/users/register`,data).then(res=>{
+                            console.log(res.data)
+                            navigation.navigate('Login', {user: data})
+                            setList(res.data);
+                              }).catch(err=>{
+                                console.log(err);
+                              })
+                        
                     })
                     .catch((error) => {
                         alert(error)

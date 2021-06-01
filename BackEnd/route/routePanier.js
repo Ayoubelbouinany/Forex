@@ -5,7 +5,7 @@ let auth = require('../midelleware/auth');
 
 
 route.post("/users/cart",Panier.AddToPanier);
-route.get("/users/:userId/cart",Panier.getCartByUserId);
+route.get("/users/:user/cart",Panier.getCartByUserId);
 route.get("/users",Panier.getCartByUserId)
 route.get("/checkout/:cartId",Panier.checkout);
 route.get('/payment/success',Panier.payment);

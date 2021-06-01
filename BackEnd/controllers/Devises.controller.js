@@ -61,7 +61,8 @@ let addNewProduct = async(req,res,next)=>{
     description:req.body.description,
     price:req.body.price,
     quantity:req.body.quantity,
-    vendeur:req.body.vendeur
+    vendeur:req.body.vendeur,
+    cur:req.body.cur
   })
    await Product.addProduct(addProduct,function (err, product){
     if(err) return next(err.message)

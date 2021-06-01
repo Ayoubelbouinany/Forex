@@ -4,12 +4,12 @@
 
 function Home({ navigation,route }) {
 let {user} = route.params;
-
+let userName = user.fullName ? user.fullName : user.name;
 const [list, setList] = useState([])
 const [load, setload] = useState(false)
 let fetchData = async()=>{
   setload(true)
-  await axios.get(`http://10.0.2.2:3000/api/products`).then(res=>{
+  await axios.get(`http://10.0.2.2:3000/api/products/${userName}`).then(res=>{
 console.log(res.data)
 setList(res.data);
   }).catch(err=>{
@@ -20,15 +20,17 @@ setList(res.data);
   
 }
 
-let AddToCart = async(devisesId)=>{
+let AddToCart = async(devisesId,increase,decrease)=>{
   let userName = user.fullName ? user.fullName : user.name 
   let data = {
     devisesId,
+    increase,
+    decrease,
     user:userName
   }
 console.log(data)
   await axios.post(`http://10.0.2.2:3000/api/users/cart`,data).then(res=>{
- console.log(res.data)
+    navigation.navigate('Panier')
   }).catch(err=>{
      console.log(err);
    })
@@ -157,7 +159,7 @@ console.log(data)
           <View> 
         <TouchableOpacity
               style={styles.button}
-               onPress={()=>AddToCart(r._id)}
+               onPress={()=>AddToCart(r._id,false,false)}
               >
         <Text style={styles.buttonTitle}>Acheter</Text>
         </TouchableOpacity>

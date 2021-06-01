@@ -63,7 +63,23 @@ let RegisterUser = function (req, res, next) {
       })
     })
   }
-
+let getUser = function(req,res,next){
+  let {fullName}= req.params;
+  User.getUserByFullName(fullName,function (err, user){
+    if(err) return err;
+    
+    console.log(user);
+    res.json({user:user});
+    
+  })
+}
+let UpdateUserSold = function(req,res,next) {
+  let {fullName,newSold}= req.body;
+  User.updateSoldUser(fullName,newSold,(err,update)=>{
+    if(err) return err;
+    console.log('Update avec success');
+  })
+}
   module.exports = {
-      RegisterUser,Login
+      RegisterUser,Login,getUser,UpdateUserSold
   }

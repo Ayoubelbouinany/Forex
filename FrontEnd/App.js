@@ -7,6 +7,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from './src/Screen/HomeScreen/HomeScreen';
 import WebChart from './src/Screen/HomeScreen/WebChart';
+import checkOut from './src/Screen/HomeScreen/checkOut';
 
 
 const Stack = createStackNavigator();
@@ -20,6 +21,7 @@ export default function App() {
       <Stack.Screen name="Registration" component={RegistrationScreen} />
       <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="ChartView" component={WebChart} />
+      <Stack.Screen name="checkout" component={checkOut} />
       </Stack.Navigator>
     </NavigationContainer>
   );
