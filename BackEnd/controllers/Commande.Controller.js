@@ -45,8 +45,8 @@ let AddCommande= async(req,res,next)=>{
         port: 465,
         secure: true, // true for 465, false for other ports
         auth: {
-          user: 'ayoub.elbouinany99@gmail.com',
-         pass: 'Ayoub123@'
+          user: '###',
+         pass: '####'
         },
       })
      
